@@ -4,7 +4,6 @@ import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +15,6 @@ public class Client {
     public static int[] prijate;
     public static ExecutorService executor;
     public static int[] offsety;
-    // private int numberOfThreads;
 
 
     public static CountDownLatch pocitadlo;
@@ -26,14 +24,7 @@ public class Client {
     private static File offsetyFile = new File("offsety.txt");
 
 
-    public Client() {
-        //this.numberOfThreads = numberOfThreads;
-
-
-    }
-
     public static void main(String[] args) {
-
 
 
         SwingUtilities.invokeLater(() -> {
@@ -41,7 +32,8 @@ public class Client {
             form.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             form.addWindowListener(new WindowAdapter() {
-                @Override public void windowClosed(WindowEvent e) {
+                @Override
+                public void windowClosed(WindowEvent e) {
                     System.exit(0);
                 }
             });
@@ -56,7 +48,6 @@ public class Client {
     public static void posielaj(int numberOfThreads) {
 
         offsety = new int[numberOfThreads];
-
 
         System.out.println("Počet vlákien: " + numberOfThreads);
         prijate = new int[numberOfThreads];
@@ -92,7 +83,8 @@ public class Client {
 
 
             for (int i = 0; i < numberOfThreads; i++) {
-                int off = i * (int) Math.ceil((double) Server.FILE.length() / numberOfThreads);;
+                int off = i * (int) Math.ceil((double) Server.FILE.length() / numberOfThreads);
+                ;
                 offsety[i] = off;
                 PrijmacieVlakno pv = new PrijmacieVlakno(sockets[i], i, file, prijate, numberOfThreads, offsety);
                 executor.execute(pv);
@@ -125,16 +117,15 @@ public class Client {
             }
         }
 
-        System.out.println("Pause: " + Arrays.toString(offsety));
     }
 
     public static void continueDownloading(int numberOfThreads) {
 
-        if(prijate == null) {
+        if (prijate == null) {
             prijate = new int[numberOfThreads];
         }
 
-        if(pocitadlo == null){
+        if (pocitadlo == null) {
             pocitadlo = new CountDownLatch(numberOfThreads);
         }
 
@@ -147,7 +138,7 @@ public class Client {
                 offsety = new int[numberOfThreads];
             }
 
-            if(socket == null) {
+            if (socket == null) {
                 socket = new Socket("localhost", Server.KOMUNIKACNY_PORT);
                 os = socket.getOutputStream();
                 dos = new DataOutputStream(os);

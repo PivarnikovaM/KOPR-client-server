@@ -2,14 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GUI extends JFrame {
@@ -27,7 +24,7 @@ public class GUI extends JFrame {
         this.setMinimumSize(new Dimension(600, 100));
 
         setContentPane(contentPane);
-        //setModal(false);
+
         this.setVisible(true);
         progressBar.setMinimum(0);
         progressBar.setMaximum((int) Server.FILE.length());
@@ -67,7 +64,6 @@ public class GUI extends JFrame {
 
 
                 while (Client.pocitadlo.getCount() > 0) {
-                    //System.out.println(Arrays.toString(prijate));
                     int sum = 0;
                     for (int i = 0; i < prijate.length; i++) {
                         sum += prijate[i];

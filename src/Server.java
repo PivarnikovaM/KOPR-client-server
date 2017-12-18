@@ -62,8 +62,6 @@ public class Server {
 
                     }
 
-
-
                     Socket[] clientSockets = new Socket[numberOfThreads];
                     executor = Executors.newFixedThreadPool(numberOfThreads);
 

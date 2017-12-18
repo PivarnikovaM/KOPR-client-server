@@ -30,11 +30,7 @@ public class OdosielacieVlakno implements Runnable {
 
 
             int len = (int) Math.ceil((double) Server.FILE.length() / numberOfThreads);
-
             int off = offset;
-
-
-            //dlzka po kade ma ist cyklus
             int dlzka = (int) Math.ceil((double) len / chunkSize);
 
 
@@ -60,7 +56,6 @@ public class OdosielacieVlakno implements Runnable {
             clientSocket.close();
 
         } catch(SocketException se) {
-            //se.printStackTrace();
             System.err.println("Prerušenie posielania na vlákne č." + count);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,9 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 
-/**
- * Created by martinapivarnikova on 11.12.17.
- */
+
 public class PrijmacieVlakno implements Runnable {
 
     private int poradie;
